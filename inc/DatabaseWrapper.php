@@ -6,11 +6,16 @@
  * Time: 14:24
  */
 
+use Psr\Log\LoggerInterface;
+
 class DatabaseWrapper {
 
 	private $db;
 
-	public function __construct() {
+	private $logger;
+
+	public function __construct(LoggerInterface $logger = null ) {
+		$this->logger = $logger;
 		$sql = new mysqli(
 			DB_HOST,
 			DB_USER,
@@ -19,13 +24,19 @@ class DatabaseWrapper {
 		);
 		$sql->select_db( DB_NAME );
 		$this->db = $sql;
+
+		unset( $sql );
+	}
+
+	public function __deconstruct() {
+		$this->db->close();
 	}
 
 	public function select() {
 		return $this->db->query( 'stuff' );
 	}
 
-	protected function isFieldPopulated( $film, $field ) {
+	public function isFieldPopulated( $film, $field ) {
 		$check = $this->db->query( "SELECT '" . $field . "' from film where film_id=" . $film ." LIMIT 1;" );
 
 		if( $check === ( NULL || '' ) ) {
@@ -42,4 +53,15 @@ class DatabaseWrapper {
 			$this->db->query( 'COUNT * from jobs where job_type = ' . $jobType . ';' );
 		}
 	}
-}	
+
+	public function addPropChange( $film, $field, $data ) {
+		try {
+			$this->db->query( 'INSERT LOW_PRIORITY INTO proposedChanges(
+				`pc_filmId`,`pc_field`,`pc_value` )
+				VALUES(`' . $film . '`, `' . $field . '`, `' . $data . '`);' );
+		} catch( Exception $e ) {
+			$this->logger->error( $e->getMessage() );
+		}
+
+	}
+}
