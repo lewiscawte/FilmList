@@ -1,0 +1,3 @@
+[submodule "libs/twig"]
+	path = libs/twig
+	url = git://github.com/twigphp/Twig.git
