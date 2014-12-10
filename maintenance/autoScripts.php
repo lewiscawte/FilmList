@@ -9,9 +9,11 @@
 class autoScripts extends Context {
 
 	protected $db;
+	protected $config;
 
 	public function __construct() {
 		$this->db = $this->getDatabase();
+		$this->config = $this->getConfig();
 	}
 
 	protected function flagAdmin( $jobDetails, $status ) {
