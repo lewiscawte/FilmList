@@ -1,3 +1,6 @@
 [submodule "libs/twig"]
 	path = libs/twig
 	url = git://github.com/twigphp/Twig.git
+[submodule "libs/psr-log"]
+	path = libs/psr-log
+	url = https://github.com/php-fig/log.git

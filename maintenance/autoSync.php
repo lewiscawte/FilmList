@@ -97,7 +97,7 @@ class autoSync extends autoScripts {
 	private function dataFound( $jobData ) {
 		$db = new DatabaseWrapper();
 
-		$film = $db->isFilmPopulated(
+		$film = $db->isFieldPopulated(
 			$jobData['film'],
 			$jobData['field']
 		);
