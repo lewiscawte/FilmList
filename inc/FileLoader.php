@@ -6,10 +6,6 @@
  * Time: 14:04
  */
 
-// Old Stuff
-require_once "FilmList.php";
-require_once "FilmPage.php";
-
 // "Core"
 require_once "Context.php";
 
@@ -19,3 +15,6 @@ require_once "page/IndexPage.php";
 
 // Automated Scripts
 require_once "../maintenance/autoScripts.php";
+
+// Vendor
+require_once "../libs/twig/lib/Twig/Autoloader.php";
