@@ -36,6 +36,10 @@ class DatabaseWrapper {
 		return $this->db->query( 'stuff' );
 	}
 
+	public function insert( $table, $fields, $values ) {
+		return $this->db->query( 'INSERT INTO' . $table . '( ' . implode( ',', $fields ) . ') VALUES ( ' . implode( ',', $values ) . ' );' );
+	}
+
 	public function isFieldPopulated( $film, $field ) {
 		$check = $this->db->query( "SELECT '" . $field . "' from film where film_id=" . $film ." LIMIT 1;" );
 
