@@ -33,9 +33,18 @@ class autoScripts extends Context {
 
 		return $this->db->insert(
 			'admin_notifications',
-			$jobDetails['jobId'],
-			$jobDetails['jobFilm'],
-			$status
+			array(
+				'notif_type',
+				'notif_time',
+				'notif_user',
+				'notif_message',
+			),
+			array(
+				serialize( array( 'autoJob',  $jobDetails['jobId'],  $jobDetails['jobFilm'] ) ),
+				date( 'Y-m-d H:i:s' ),
+				'SYSTEM-AUTO',
+				$status
+			)
 		);
 	}
 } 

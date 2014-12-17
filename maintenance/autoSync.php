@@ -95,22 +95,21 @@ class autoSync extends autoScripts {
 	 * @param $jobData array
 	 */
 	private function dataFound( $jobData ) {
-		$db = new DatabaseWrapper();
 
-		$film = $db->isFieldPopulated(
+		$film = $this->db->isFieldPopulated(
 			$jobData['film'],
 			$jobData['field']
 		);
 
 		if( $film === true ) {
-			$db->addPropChange(
+			$this->db->addPropChange(
 				$jobData['film'],
 				$jobData['field'],
 				$jobData['data']
 			);
 			$flag = 3;
 		} else {
-			$db->updateFilmField(
+			$this->db->updateFilmField(
 				$jobData['film'],
 				$jobData['field'],
 				$jobData['data']
