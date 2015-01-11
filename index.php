@@ -9,6 +9,8 @@
 require "settings.php";
 require "inc/FileLoader.php";
 
+$IP = __DIR__;
+
 if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 	$page = "index";
 	$newPage = new IndexPage();

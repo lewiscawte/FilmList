@@ -7,14 +7,18 @@
  */
 
 // "Core"
-require_once "Context.php";
+require_once "$IP/inc/Context.php";
+require_once "$IP/inc/Config.php";
+require_once "$IP/inc/DatabaseWrapper.php";
+require_once "$IP/inc/Linker.php";
+require_once "$IP/inc/FLSessionHandler.php";
 
 // Pages
-require_once "page/Page.php";
-require_once "page/IndexPage.php";
+require_once "$IP/inc/page/Page.php";
+require_once "$IP/inc/page/IndexPage.php";
 
 // Automated Scripts
-require_once "../maintenance/autoScripts.php";
+require_once "$IP/maintenance/autoScripts.php";
 
 // Vendor
-require_once "../libs/twig/lib/Twig/Autoloader.php";
+require_once "$IP/libs/twig/lib/Twig/Autoloader.php";
