@@ -6,10 +6,10 @@
  * Time: 14:02
  */
 
+$IP = __DIR__;
+
 require "settings.php";
 require "inc/FileLoader.php";
-
-$IP = __DIR__;
 
 if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 	$page = "index";
