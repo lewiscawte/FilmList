@@ -20,8 +20,8 @@ class Config extends Context {
 		$this->sql = $sql;
 	}
 
-	protected function getSession() {
-		$session = new SessionHandler();
+	public function getSession() {
+		$session = new FLSessionHandler();
 
 		return $session;
 	}
