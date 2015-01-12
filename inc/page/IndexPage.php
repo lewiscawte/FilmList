@@ -16,7 +16,10 @@ class IndexPage extends Page {
 		if( $page != "index" ) {
 			echo "REDIRECT1";
 			Linker::doRedirect(
-				array( 'error', 'exceptionPoorPage' ),
+				array(
+					'error',
+					'exceptionPoorPage'
+				),
 				array(
 					'page' => $page,
 					'src' => $this->thispage,
