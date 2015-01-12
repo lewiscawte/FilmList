@@ -32,9 +32,24 @@ class DatabaseWrapper {
 		$this->db->close();
 	}
 
-	public function select() {
-		return $this->db->query( 'stuff' );
+	/**
+	 * DO NOT USE - NOT COMPLETE/WORKING
+	 * TODO: FIX THIS
+	 * @param $table
+	 * @param $vars
+	 * @param string $conds
+	 * @param string $fname
+	 * @param array $options
+	 * @param array $join_conds
+	 * @return bool|mysqli_result
+	 */
+	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
+							$options = array(), $join_conds = array() ) {
+		$select = $this->db->query( "SELCT '" . implode( ',', $vars ) . "' FROM " . $table . " WHERE " . $conds );
+
+		return $select;
 	}
+
 
 	public function insert( $table, $fields, $values ) {
 		return $this->db->query( 'INSERT INTO' . $table . '( ' . implode( ',', $fields ) . ') VALUES ( ' . implode( ',', $values ) . ' );' );
@@ -66,6 +81,9 @@ class DatabaseWrapper {
 		} catch( Exception $e ) {
 			$this->logger->error( $e->getMessage() );
 		}
+	}
 
+	public function doQuery( $query ) {
+		return $this->db->query( $query );
 	}
 }
