@@ -22,3 +22,4 @@ require_once "$IP/maintenance/autoScripts.php";
 
 // Vendor
 require_once "$IP/libs/twig/lib/Twig/Autoloader.php";
+Twig_Autoloader::register();
