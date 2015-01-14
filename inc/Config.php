@@ -31,7 +31,14 @@ class Config extends Context {
 	 * @return bool|mysqli_result
 	 */
 	public function getSetting( $setting ) {
-		$confVar = $this->sql->query( "SELECT 'config_value' FROM config where config_item='" . $setting . "';" );
-		return $confVar;
+		$confVar = $this->sql->query( "SELECT config_value FROM config where config_item = '" . $setting . "';" );
+		$val = $confVar->fetch_assoc();
+		unset ( $confVar );
+
+		if ( $val === NULL ) {
+			$val = 'THIS CONFIG ITEM DOES NOT EXIST IN THE DATABASE!!';
+		}
+
+		return $val;
 	}
 }
