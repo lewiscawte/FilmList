@@ -4,3 +4,6 @@
 [submodule "libs/psr-log"]
 	path = libs/psr-log
 	url = https://github.com/php-fig/log.git
+[submodule "libs/tmdb-api"]
+	path = libs/tmdb-api
+	url = https://github.com/wtfzdotnet/php-tmdb-api.git

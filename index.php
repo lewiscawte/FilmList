@@ -16,7 +16,7 @@ if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 	$newPage = new IndexPage();
 	$newPage->execute( $page );
 } else {
-	$page = $_REQUEST['page'];
+	$page = htmlspecialchars( $_REQUEST['page'] );
 	switch ( $page ) {
 		case 'error':
 			$newPage = new ErrorPage();
