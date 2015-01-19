@@ -29,4 +29,15 @@ class Context {
 
 		return $database;
 	}
+
+	public function getTwig() {
+		global $IP;
+
+		$loader = new Twig_Loader_Filesystem( "$IP/inc/templates" );
+		$twig = new Twig_Environment( $loader, array(
+			'cache' => "$IP/cache",
+		) );
+
+		return $twig;
+	}
 } 
