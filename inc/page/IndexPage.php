@@ -12,6 +12,7 @@ class IndexPage extends Page {
 	public function execute( $page ) {
 		$config = $this->getConfig();
 		$session = $config->getSession();
+		$template = $this->getTwig()->loadTemplate( 'index.twig' );
 
 		if( $page != "index" ) {
 			echo "REDIRECT1";
@@ -31,7 +32,9 @@ class IndexPage extends Page {
 			echo "REDIRECT2";
 			Linker::doRedirect( array( 'login' => NULL ), array( 'src' => $this->thispage ) );
 		}
-		echo "Foobar";
 
+		$template->display( array(
+			'name' => 'Foobar',
+		) );
 	}
 }
