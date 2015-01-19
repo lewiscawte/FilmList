@@ -16,6 +16,7 @@ require_once "$IP/inc/FLSessionHandler.php";
 // Pages
 require_once "$IP/inc/page/Page.php";
 require_once "$IP/inc/page/IndexPage.php";
+require_once "$IP/inc/page/ListFilms.php";
 
 // Automated Scripts
 require_once "$IP/maintenance/autoScripts.php";
