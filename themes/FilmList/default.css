@@ -58,3 +58,15 @@ div#ui-filmposter {
     float: left;
     position: relative;
 }
+
+ul#film-tags {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul#ui-importantdetails {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
