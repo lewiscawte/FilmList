@@ -8,3 +8,7 @@ INSERT INTO `config` (`config_item`, `config_group`, `config_value`) VALUES
 INSERT INTO `film` (`film_id`, `film_name`, `film_active`, `film_virtlocation`, `film_year`, `film_runtime`, `film_plot`, `film_budget`, `film_budget_currency`, `film_tags`, `film_added`) VALUES
 (1, 'The LEGO Movie', 1, '', '2014', 100, '', 60000000, 'USD', 'Animation,Comedy,Adventure', NULL),
 (5, 'Taken 2', 1, '/var/run/fi124', '2012', 92, NULL, 45000000, 'USD', 'Action,Thriller', NULL);
+
+
+INSERT INTO `user` (`user_id`, `user_name`, `user_password`) VALUES
+  (2, 'TestUser', '482c811da5d5b4bc6d497ffa98491e38');

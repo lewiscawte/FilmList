@@ -18,6 +18,10 @@ if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 } else {
 	$page = htmlspecialchars( $_REQUEST['page'] );
 	switch ( $page ) {
+		case 'login':
+			$newPage = new LoginPage();
+			$newPage->execute( $page );
+			break;
 		case 'error':
 			$newPage = new ErrorPage();
 			$newPage->execute( $page );

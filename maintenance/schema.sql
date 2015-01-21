@@ -31,3 +31,10 @@ CREATE TABLE IF NOT EXISTS `film` (
   UNIQUE KEY `film_virtlocation` (`film_virtlocation`),
   UNIQUE KEY `film_name` (`film_name`,`film_year`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(41) NOT NULL,
+  `user_password` text,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
