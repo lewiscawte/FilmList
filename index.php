@@ -22,6 +22,10 @@ if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 			$newPage = new ErrorPage();
 			$newPage->execute( $page );
 			break;
+		case 'film':
+			$newPage = new FilmPage();
+			$newPage->execute( $page );
+			break;
 		case 'listfilms':
 			$newPage = new ListFilms();
 			$newPage->execute( $page );
