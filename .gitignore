@@ -39,3 +39,6 @@ settings.php
 
 # Developer folder
 ui/
+
+# Twig auto-generated cache
+cache/
