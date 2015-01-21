@@ -1,0 +1,32 @@
+{% include 'header.twig' %}
+<div class="ui-header">Film List</div>
+<div class="ui-sidebar">
+    {% include 'sidebar.twig' %}
+</div>
+<div class="ui-content">
+    <h2>List of films available</h2>
+
+    <p>Hello {{ pagetitle }}</p>
+
+    <p>All films enabled for use / viewing are listed on this page. Your available films are as follows: </p>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Film Name</th>
+            <th>Year</th>
+            <th>Runtime</th>
+        </tr>
+        {% for f in films %}
+            <tr>
+                <td></td>
+                <td><a href="{{ baseurl }}index.php?page=film&filmid={{ f['film_id'] }}">{{ f['film_name'] | escape }}</a></td>
+                <td>{{ f['film_year'] | escape }}</td>
+                <td>{{ f['film_runtime'] | escape }} minutes</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p>Happy Viewing!</p>
+/div>
+{% include 'footer.twig' %}
