@@ -49,7 +49,7 @@ class FilmPage extends Page {
 		$x = 0;
 
 		$tags = explode( ',', $tags );
-		
+
 		foreach( $tags as $tag ) {
 			$tag = htmlspecialchars( $tag );
 			$x++;
