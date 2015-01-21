@@ -3,5 +3,5 @@
  */
 
 function toggleDiv( showHide ) {
-    $("#" + showHide ).toggle();
+    $( '#' + showHide ).toggle();
 }
