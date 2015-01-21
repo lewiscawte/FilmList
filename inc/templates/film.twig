@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title>The LEGO Movie | Film List</title>
-        <link href="styles/filmDetails.css"  type="text/css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="ui-header">
-            FILM LIST :)
-        </div>
+{% include 'header.twig' %}
+        <div class="ui-header">Film List</div>
         <div class="ui-sidebar">
-            <div id="nav-index">
-                <img src="img/nav/index.png" width="15px" height="15px">
-                <h4>List Films</h4>
-                <span id="nav-index-desc">A list of all films</span>
-            </div>
+            {% include 'sidebar.twig' %}
         </div>
         <div class="ui-content">
-            <h1 id="ui-filmtitle">The LEGO Movie</h1>
+            <h1 id="ui-filmtitle">{{ film['film_name'] }} ({{ film['film_year'] }})</h1>
             <span id="ui-filmicon">
                 <img src="styles/img/animation.png" height="25px" width="25px" />
             </span>
@@ -35,10 +22,12 @@
             <div id="ui-filmposter">
                 <img src="img/LegoMovie.jpg" width="300px" height="500px" />
             </div>
-            <div id="ui-importantdetails">
-                <span id="detail-genre">Genre:</span><span id="output-genre">Adventure | Comedy</span>
-                <span id="detail-genre">Run Time:</span><span id="output-runtime">100 mins</span>
-            </div>
+            <ul id="ui-importantdetails">
+                <li><span id="detail-genre">Genre:</span> <span id="output-genre"><ul>
+                {% for tag in film['film_tags'] %}
+                    <li>{{ tag }}</li>
+                {% endfor %}</ul></span></li>
+                <li><span id="detail-genre">Run Time:</span> <span id="output-runtime">{{ film['film_runtime'] }} mintues</span></li>
+            </ul>
         </div>
-    </body>
-</html>
+{% include 'footer.twig' %}
