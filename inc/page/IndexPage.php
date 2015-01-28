@@ -14,7 +14,7 @@ class IndexPage extends Page {
 		$session = $config->getSession();
 		$template = $this->getTwig()->loadTemplate( 'index.twig' );
 
-		if( $page != "index" ) {
+		if ( $page != "index" ) {
 			Linker::doRedirect(
 				array(
 					'error',
@@ -27,7 +27,7 @@ class IndexPage extends Page {
 			);
 		}
 
-		if( !$config->getSetting( 'LoggedOutDash' ) && $session->validityCheck() && !$session->loggedIn() ) {
+		if ( !$config->getSetting( 'LoggedOutDash' ) && $session->validityCheck() && !$session->loggedIn() ) {
 			Linker::doRedirect( array( 'login' => NULL ), array( 'src' => $this->thispage ) );
 		}
 

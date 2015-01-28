@@ -23,12 +23,12 @@ class Linker extends Context {
 		$conf = new Config();
 		$returnURL = $conf->getSetting( 'BaseURL' );
 
-		if( substr( $returnURL, -1 ) !== "/" ) {
+		if ( substr( $returnURL, -1 ) !== "/" ) {
 			$returnURL = $returnURL . "/";
 		}
 		$returnURL = $returnURL . "?page=" . htmlspecialchars( $page );
 
-		if( isset( $ref ) ) {
+		if ( isset( $ref ) ) {
 			$returnURL = $returnURL . "&ref=" . htmlspecialchars( $ref );
 		}
 
@@ -45,8 +45,8 @@ class Linker extends Context {
 
 		$baseURL .= '?page=' . $location['page'];
 
-		if( isset( $location['pagetype'] ) ) {
-			$baseURL =+ '&type=' . $location['pagetype'];
+		if ( isset( $location['pagetype'] ) ) {
+			$baseURL = + '&type=' . $location['pagetype'];
 		}
 
 		$redirectURL = $baseURL;

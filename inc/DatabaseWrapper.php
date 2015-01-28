@@ -14,7 +14,7 @@ class DatabaseWrapper {
 
 	private $logger;
 
-	public function __construct(LoggerInterface $logger = null ) {
+	public function __construct( LoggerInterface $logger = null ) {
 		$this->logger = $logger;
 		$sql = new mysqli(
 			DB_HOST,
@@ -56,9 +56,9 @@ class DatabaseWrapper {
 	}
 
 	public function isFieldPopulated( $film, $field ) {
-		$check = $this->db->query( "SELECT '" . $field . "' from film where film_id=" . $film ." LIMIT 1;" );
+		$check = $this->db->query( "SELECT '" . $field . "' from film where film_id=" . $film . " LIMIT 1;" );
 
-		if( $check === ( NULL || '' ) ) {
+		if ( $check === ( NULL || '' ) ) {
 			$check = false;
 		} else {
 			$check = true;
@@ -68,7 +68,7 @@ class DatabaseWrapper {
 	}
 
 	public function countJobs( $jobType ) {
-		if( isset( $jobType ) ) {
+		if ( isset( $jobType ) ) {
 			$this->db->query( 'COUNT * from jobs where job_type = ' . $jobType . ';' );
 		}
 	}
@@ -78,7 +78,7 @@ class DatabaseWrapper {
 			$this->db->query( 'INSERT LOW_PRIORITY INTO proposedChanges(
 				`pc_filmId`,`pc_field`,`pc_value` )
 				VALUES(`' . $film . '`, `' . $field . '`, `' . $data . '`);' );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$this->logger->error( $e->getMessage() );
 		}
 	}

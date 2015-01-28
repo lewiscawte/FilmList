@@ -12,13 +12,13 @@ class ListFilms extends Page {
 	public function __construct() {
 		$flOffset = isset( $_REQUEST['flOffset'] ) ? (int)$_REQUEST['flOffset'] : 0;
 
-		if( $flOffset !== 0 && is_int( $flOffset ) ) {
+		if ( $flOffset !== 0 && is_int( $flOffset ) ) {
 			$this->offset = htmlspecialchars( $flOffset );
 		}
 	}
 
 	public function execute( $page ) {
-		//$this->doPageCheck();
+		// $this->doPageCheck();
 		$query = $this->queryLimit();
 
 		$dbr = $this->getDatabase()->doQuery( $query );
@@ -26,7 +26,7 @@ class ListFilms extends Page {
 		$x = 0;
 		$films = array();
 
-		while( $entry = $dbr->fetch_assoc() ) {
+		while ( $entry = $dbr->fetch_assoc() ) {
 			$x++;
 			$films[$x] = $entry;
 		}
@@ -50,8 +50,8 @@ class ListFilms extends Page {
 		$limit = $conf->getSetting( 'ListLimit' );
 		$limit = $limit['config_value'];
 
-		if( isset( $limit ) && $limit !== 0 ) {
-			if( $this->offset !== 0 ) {
+		if ( isset( $limit ) && $limit !== 0 ) {
+			if ( $this->offset !== 0 ) {
 				$limit = "LIMIT " . $this->offset . "," . $limit;
 			} else {
 				$limit = "LIMIT " . $limit;

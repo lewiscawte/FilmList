@@ -4,7 +4,7 @@ require_once "index.php";
 
 $context = new Context();
 
-if ( isset($_POST['submit'] ) ) {
+if ( isset( $_POST['submit'] ) ) {
 	$uname = mysql_real_escape_string( $_POST['username'] );
 	$pass = hash( 'md5', mysql_real_escape_string( $_POST['password'] ) );
 
@@ -16,11 +16,11 @@ if ( isset($_POST['submit'] ) ) {
 	$_SESSION['username'] = $sql['user_name'];
 	$_SESSION['loggedIn'] = true;
 
-	header("Location: index.php?page=listfilms");
+	header( "Location: index.php?page=listfilms" );
 
 	exit;
 
 } else {
-	header("Location: index.php?page=login");
+	header( "Location: index.php?page=login" );
 	exit;
 }

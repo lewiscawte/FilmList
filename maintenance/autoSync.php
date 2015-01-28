@@ -10,7 +10,7 @@ class autoSync extends autoScripts {
 
 		$sql = $this->db;
 
-		if( $sql->countJobs( 'sync' ) === 0 ) {
+		if ( $sql->countJobs( 'sync' ) === 0 ) {
 			echo "No jobs, script is exiting.\n";
 			die();
 		} else {
@@ -28,12 +28,12 @@ class autoSync extends autoScripts {
 		$fileRecord = new RecordFile();
 		$dataSources = $fileRecord->getDataSources( $job->job_filmId );
 
-		if( $dataSources === 0 ) {
+		if ( $dataSources === 0 ) {
 			// Get data from list of global sources if can be found
 			$this->attemptFindFromGlobal( $job );
 		} else {
-			foreach( $dataSources as $source ) {
-				if( array_key_exists( $source, $this->config->validDataSources ) ) {
+			foreach ( $dataSources as $source ) {
+				if ( array_key_exists( $source, $this->config->validDataSources ) ) {
 					$find = $this->dataFind( $source );
 					if ( $find === true ) {
 						break;
@@ -41,7 +41,7 @@ class autoSync extends autoScripts {
 				}
 			}
 		}
-		if( $data == NULL ) {
+		if ( $data == NULL ) {
 			// Notify the admin that the sources that are supposed to have the data... don't.
 			$this->flagAdmin(
 				array(
@@ -75,7 +75,7 @@ class autoSync extends autoScripts {
 	private function dataFind( $source ) {
 		$sourceObj = $this->config->dataSourceObj( $source );
 		$data = $sourceObj->getDataPiece( $job->job_syncField );
-		if( $data != NULL ) {
+		if ( $data != NULL ) {
 			$this->dataFound(
 				array(
 					'film' => $job->job_filmId,
@@ -101,7 +101,7 @@ class autoSync extends autoScripts {
 			$jobData['field']
 		);
 
-		if( $film === true ) {
+		if ( $film === true ) {
 			$this->db->addPropChange(
 				$jobData['film'],
 				$jobData['field'],

@@ -25,7 +25,7 @@ class Page extends Context {
 
 		$titleSitename = $this->getConfig()->getSetting( 'TitleSitename' );
 
-		if( boolval( $titleSitename['config_value'] ) ) {
+		if ( boolval( $titleSitename['config_value'] ) ) {
 			$sitename = $this->getConfig()->getSetting( 'Sitename' );
 			$title .= " | " . $sitename['config_value'];
 		}

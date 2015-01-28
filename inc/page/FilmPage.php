@@ -12,13 +12,13 @@ class FilmPage extends Page {
 	public function __construct() {
 		$filmID = isset( $_REQUEST['filmid'] ) ? (int)$_REQUEST['filmid'] : 0;
 
-		if( $filmID !== 0 && is_int( $filmID ) ) {
+		if ( $filmID !== 0 && is_int( $filmID ) ) {
 			$this->filmID = htmlspecialchars( $filmID );
 		}
 	}
 
 	public function execute( $page ) {
-		if( $this->filmID === 0 ) {
+		if ( $this->filmID === 0 ) {
 			Linker::doRedirect(
 				array(
 					'error',
@@ -50,7 +50,7 @@ class FilmPage extends Page {
 
 		$tags = explode( ',', $tags );
 
-		foreach( $tags as $tag ) {
+		foreach ( $tags as $tag ) {
 			$tag = htmlspecialchars( $tag );
 			$x++;
 			$cleanTags[$x] = $tag;
