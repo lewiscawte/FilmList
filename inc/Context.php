@@ -34,9 +34,7 @@ class Context {
 		global $IP;
 
 		$loader = new Twig_Loader_Filesystem( "$IP/inc/templates" );
-		$twig = new Twig_Environment( $loader, array(
-			'cache' => "$IP/cache",
-		) );
+		$twig = new Twig_Environment( $loader, array() );
 
 		return $twig;
 	}
