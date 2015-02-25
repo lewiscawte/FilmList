@@ -14,7 +14,7 @@ class AdminEditFilm extends AdminPage {
 
 	public function execute( $page ) {
 		// $this->doPageCheck();
-		
+
 		$template = $this->getTwig()->loadTemplate( 'admin-index.twig' );
 		$template->display( array(
 			'baseurl' => $baseURL = $this->getConfig()->getSetting( 'BaseURL' )['config_value'],

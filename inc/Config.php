@@ -21,9 +21,9 @@ class Config extends Context {
 	}
 
 	public function getSession() {
-		//$session = new FLSessionHandler();
+		// $session = new FLSessionHandler();
 
-		//return $session;
+		// return $session;
 	}
 
 	/**

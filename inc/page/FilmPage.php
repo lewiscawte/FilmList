@@ -82,7 +82,7 @@ class FilmPage extends Page {
 	private function sortAdaptations( $serialInput ) {
 		$serialInput = unserialize( $serialInput );
 
-		if( !empty( $serialInput ) ) {
+		if ( !empty( $serialInput ) ) {
 			$inspiration = array();
 			if ( array_key_exists( 'inspiration', $serialInput ) ) {
 				foreach ( $serialInput['inspiration'] as $inspiration ) {
@@ -111,7 +111,7 @@ class FilmPage extends Page {
 	 */
 	private function adaptationTypeFilter( $adaptation ) {
 		$adaptation = explode( '|', $adaptation );
-		if( $adaptation[0] === ( 'book' || 'film' || 'toy' || 'tv' ) ) {
+		if ( $adaptation[0] === ( 'book' || 'film' || 'toy' || 'tv' ) ) {
 			switch( $adaptation[0] ) {
 				case 'tv':
 					$adaptation[0] = 'tv series';
@@ -138,7 +138,7 @@ class FilmPage extends Page {
 		$output = explode( ':', $input );
 		unset( $input );
 
-		if( $output[0] === 'default' ) {
+		if ( $output[0] === 'default' ) {
 			$output[0] = $this->getConfig()->getSetting( 'BaseImagePath' )['config_value']
 				. '/default/';
 		} elseif ( $output[0] === 'base' ) {
