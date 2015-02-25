@@ -32,7 +32,7 @@ class IndexPage extends Page {
 		}
 
 		$template->display( array(
-			'name' => 'Foobar',
+			'name' => $_SESSION['username'],
 		) );
 	}
 }

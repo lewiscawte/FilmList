@@ -9,21 +9,30 @@
                 <span id="ui-filmicon">
                     <img src="styles/img/animation.png" height="25px" width="25px" />
                 </span>
+                {% if adaptations %}
                 <div id="ui-adaptation">
+                    {% if adaptations['from'] %}
                     <span id="ui-adaptationsfrom">Adapted from:</span>
                     <ul>
-                        <li>LEGO toys</li>
+                        {% for original in adaptations['from'] %}
+                        <li>{{ from }}</li>
+                        {% endfor %}
                     </ul>
+                    {% endif %}
+                    {% if adapations['to'] %}
                     <span id="ui-remakes">Adaptations:</span>
                     <ul>
-                        <li>LEGO Movie Video Game: The Movie</li>
-                        <li>LEGO Movie: The Book</li>
+                        {% for remake in adaptations['to'] %}
+                        <li>{{ remake }}</li>
+                        {% endfor %}
                     </ul>
+                    {% endif %}
                 </div>
+                {% endif %}
                 <div id="ui-filmposter">
-                    <img src="img/LegoMovie.jpg" width="300px" height="500px" />
+                    <img src="{{ film.film_poster }}" width="300px" height="500px" />
 
-                    <a href="javascript:toggleDiv( 'ui-adaptation' );">Show/Hide</a>
+                    {% if adaptations %}<a href="javascript:toggleDiv( 'ui-adaptation' );">Show/Hide</a>{% endif %}
                 </div>
                 <ul id="ui-importantdetails">
                     <li><span id="detail-genre">Genre:</span> <span id="output-genre"><ul id="film-tags">
@@ -35,9 +44,11 @@
             </div>
             <hr />
             <div id="ui-additionaldetails">
+                {% if film['film_plot'] %}
                 <div id="ui-filmplot">
                     {{ film['film_plot'] }}
                 </div>
+                {% endif %}
             </div>
         </div>
 {% include 'footer.twig' %}

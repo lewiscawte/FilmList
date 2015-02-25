@@ -8,7 +8,7 @@
  * TODO: in place of current testing/debugging returns
  */
 
-class FLSessionHandler extends SessionHandler {
+class FLSessionHandler {
 	private $context;
 
 	public function __construct() {
@@ -21,6 +21,16 @@ class FLSessionHandler extends SessionHandler {
 	}
 
 	public function loggedIn() {
-		return false;
+		/*
+		if( $_SESSION['loggedIn'] === true ) {
+			$val = true;
+		} else {
+			$val = false;
+		}
+
+		return $val;
+		*/
+
+		return true;
 	}
 }

@@ -1,0 +1,37 @@
+{% include 'header.twig' %}
+<div class="ui-header">Film List</div>
+<div class="ui-sidebar">
+    {% include 'sidebar.twig' %}
+</div>
+<div class="ui-content">
+	<h2>Add Film</h2>
+
+    <form action="addFilm.php" method="post" name   ="addFilm">
+
+        <label>Film Name: <input type="text" name="name" /></label><br />
+
+        <label>Year of First Release: <input type="text" name="year" /></label><br />
+
+        <label>Runtime: <input type="number" name="runtime" /></label><br />
+
+        <label>Plot:
+            <textarea form="addFilm" name="plot"></textarea></label><br />
+
+        <label>Budget: <input type="number" name="budget"></label><br />
+
+        <label>Tags/Genres: <input type="text" name="tags"></label><br />
+
+        <label>Inspired by:
+            <textarea form="addFilm" name="inspiration"></textarea></label><br />
+
+        <label>Adaptations
+            <textarea form="addFilm" name="adaptations"></textarea></label><br />
+
+        <label>File System Base Path: <input type="text" name="basepath" /></label><br />
+
+        <label>Enable? <input type="checkbox" name="enable"></label><br />
+
+        <label><input type="submit" /></label>
+    </form>
+	</div>
+{% include 'footer.twig' %}

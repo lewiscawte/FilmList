@@ -7,6 +7,7 @@
  */
 
 $IP = __DIR__;
+session_start();
 
 require "settings.php";
 require "inc/FileLoader.php";
@@ -18,10 +19,12 @@ if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 } else {
 	$page = htmlspecialchars( $_REQUEST['page'] );
 	switch ( $page ) {
+		/*
 		case 'login':
 			$newPage = new LoginPage();
 			$newPage->execute( $page );
 			break;
+		*/
 		case 'error':
 			$newPage = new ErrorPage();
 			$newPage->execute( $page );
@@ -32,6 +35,21 @@ if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] === "index" ) {
 			break;
 		case 'listfilms':
 			$newPage = new ListFilms();
+			$newPage->execute( $page );
+			break;
+		/*
+		 * Admin panel pages
+		 */
+		case 'admin/index':
+			$newPage = new AdminIndex();
+			$newPage->execute( $page );
+			break;
+		case 'admin/addfilm':
+			$newPage = new AdminAddFilm();
+			$newPage->execute( $page );
+			break;
+		case 'admin/editfilm':
+			$newPage = new AdminEditFilm();
 			$newPage->execute( $page );
 			break;
 		default:
