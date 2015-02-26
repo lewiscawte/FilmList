@@ -22,8 +22,6 @@ function execute() {
 		file_put_contents( 'connection.log', "Failed to connect to MySQL: " . mysqli_connect_error() );
 	}
 
-	print_r( var_export( $_POST ) );
-
 	mysqli_select_db( $connection, DB_NAME );
 
 	mysqli_query( $connection, "INSERT INTO film ( film_name, film_active, film_year, film_added )
@@ -49,5 +47,5 @@ function execute() {
 
 	mysqli_close( $connection );
 
-	//header( 'Location: index.php?page=admin/index' );
+	header( 'Location: index.php?page=admin/index' );
 }
