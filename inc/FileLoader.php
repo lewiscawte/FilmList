@@ -12,6 +12,9 @@ require_once "$IP/inc/Config.php";
 require_once "$IP/inc/DatabaseWrapper.php";
 require_once "$IP/inc/Linker.php";
 
+// Utilities
+require_once "$IP/inc/Ratings.php";
+
 // Pages
 require_once "$IP/inc/page/Page.php";
 require_once "$IP/inc/page/IndexPage.php";

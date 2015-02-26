@@ -46,12 +46,15 @@ class FilmPage extends Page {
 
 		$film['film_poster'] = $this->sortPathing( $film['film_poster'] );
 
+		$rating = new Ratings( $this->filmID );
+
 		$template = $this->getTwig()->loadTemplate( 'film.twig' );
 		$template->display( array(
 			'baseurl' => $baseURL = $this->getConfig()->getSetting( 'BaseURL' )['config_value'],
 			'pagetitle' => $this->getTitle( $this->thispage ),
 			'film' => $film,
 			'adaptations' => $adaptations,
+			'ratings' => $rating->fetchOutput(),
 		) );
 
 	}

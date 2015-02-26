@@ -50,5 +50,23 @@
                 </div>
                 {% endif %}
             </div>
+            {% if ratings %}
+            <div id="ui-reviews">
+                {% for review in ratings %}
+                <div class="ui-review">
+                    <div class="ui-review-head">
+                        <p>{{ review['user'] }} wrote:</p>
+                        <p class="ui-review-score">Score: {{ review['score'] }} / 10</p>
+                    </div>
+                    <div class="ui-review-body">
+                        {{ review['text'] }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div id="ui-review-form">
+                {% include 'review-form.twig' %}
+            </div>
         </div>
 {% include 'footer.twig' %}

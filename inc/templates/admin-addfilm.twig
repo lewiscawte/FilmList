@@ -6,7 +6,7 @@
 <div class="ui-content">
 	<h2>Add Film</h2>
 
-    <form action="addFilm.php" method="post" name="addFilm">
+    <form action="addFilm.php" method="post" name="addFilm" id="addFilm">
 
         <label>Film Name: <input type="text" name="name" /></label><br />
 
@@ -15,7 +15,7 @@
         <label>Runtime: <input type="number" name="runtime" /></label><br />
 
         <label>Plot:
-            <textarea form="addFilm" name="plot"></textarea></label><br />
+            <textarea form="addFilm" name="plot" maxlength="5000"></textarea></label><br />
 
         <label>Budget: <input type="number" name="budget"></label><br />
 

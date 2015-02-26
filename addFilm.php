@@ -22,6 +22,8 @@ function execute() {
 		file_put_contents( 'connection.log', "Failed to connect to MySQL: " . mysqli_connect_error() );
 	}
 
+	print_r( var_export( $_POST ) );
+
 	mysqli_select_db( $connection, DB_NAME );
 
 	mysqli_query( $connection, "INSERT INTO film ( film_name, film_active, film_year, film_added )
@@ -38,7 +40,7 @@ function execute() {
 	// Not inserting the following will cause the film pages to not output any content.
 
 	mysqli_query( $connection, "INSERT INTO film_details ( film_id, film_runtime, film_plot, film_budget, film_budgetcurrency, film_tags, film_adaptations )
-		VALUES ( '" . $id . "', '" . (int)$_POST['runtime'] . "', '" . $_POST['plot'] . "', '" . $_POST['budget'] . "', 'USD', '" . htmlspecialchars( $_POST['tags'] ) . "', '" . serialize( $adaptations ) . "' );" );
+		VALUES ( '" . $id . "', '" . (int)$_POST['runtime'] . "', '" . htmlspecialchars( $_POST['plot'] ) . "', '" . $_POST['budget'] . "', 'USD', '" . htmlspecialchars( $_POST['tags'] ) . "', '" . serialize( $adaptations ) . "' );" );
 
 	mysqli_query( $connection, "INSERT INTO film_locations ( film_id, film_base )
 		VALUES ( '" . $id . "', '" . htmlspecialchars( $_POST['basepath'] ) . "' )" );
@@ -47,5 +49,5 @@ function execute() {
 
 	mysqli_close( $connection );
 
-	header( 'Location: index.php?page=admin/index' );
+	//header( 'Location: index.php?page=admin/index' );
 }

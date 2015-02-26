@@ -1,0 +1,15 @@
+<br /><br />
+<hr />
+<form action="addReview.php" method="post" name="addReview" id="addReview">
+
+    <label>Name: <input type="text" name="name" required /></label><br />
+
+    <label>Score: <input type="number" name="score" min="0" max="10" /></label><br />
+
+    <label>Review:
+        <textarea form="addReview" name="text"></textarea></label><br />
+
+    <input type="hidden" value="{{ film['film_id'] }}" name="filmID" />
+
+    <label><input type="submit" /></label>
+</form>
