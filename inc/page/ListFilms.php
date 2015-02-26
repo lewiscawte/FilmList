@@ -46,7 +46,9 @@ class ListFilms extends Page {
 	private function queryLimit() {
 		$conf = $this->getConfig();
 
-		$baseQuery = "SELECT * FROM film WHERE film_active = 1";
+		$baseQuery = "SELECT * FROM film
+			JOIN film_details ON film.film_id = film_details.film_id
+			WHERE film_active = 1";
 		$limit = $conf->getSetting( 'ListLimit' );
 		$limit = $limit['config_value'];
 
