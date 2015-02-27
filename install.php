@@ -16,7 +16,6 @@ function form() {
 	echo '<label>Database User: <input type="text" name="dbUser" value="myuser"/></label><br />';
 	echo '<label>Database Pass: <input type="password" name="dbPass" value="mypassword"/></label><br />';
 	echo '<label>Database: <input type="text" name="dbName" value="filmlist"/></label><br />';
-	echo '<label>Database Host: <input type="text" name="name" value="localhost"/></label><br />';
 	echo '<label>Address: <input type="text" name="webAddress" value="http://filmlist.myserver.com"/></label><br />';
 	echo '<label>Films per Page: <input type="number" name="filmsPage" value="25"/></label><br />';
 	echo '<input type="submit" />';
@@ -57,11 +56,19 @@ define( "DB_NAME", "' . $_POST['dbName'] . '" );';
 	mysqli_multi_query( $connection, $schema );
 
 	mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
-		VALUES ( 'BaseURL', '', '" . $_POST['webAddress'] . "' )" );
+		VALUES ( 'BaseURL', '', '" . (string)$_POST['webAddress'] . "' )" );
 	mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
-		VALUES ( 'ListLimit', '', '" . $_POST['filmsPage'] . "' )" );
+		VALUES ( 'ListLimit', '', '" . (string)$_POST['filmsPage'] . "' )" );
+
+	$defaultSettings = file_get_contents( 'maintenance/defaultData.sql' );
+	if ( !$defaultSettings ) {
+		die( 'Could not get default settings file!' );
+	}
+
+	mysqli_multi_query( $connection, $defaultSettings );
 
 	mysqli_close( $connection );
 
-	header( 'Location: index.php?page=index' );
+	print_r( var_export( $_POST ) );
+	//header( 'Location: index.php?page=index' );
 }
