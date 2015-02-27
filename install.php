@@ -14,7 +14,7 @@ function form() {
 	echo '<form name="installFL" id="installFL" method="post" action="' . htmlspecialchars( $_SERVER["PHP_SELF"] ) . '" />';
 	echo '<label>Database Host: <input type="text" name="dbHost" value="localhost"/></label><br />';
 	echo '<label>Database User: <input type="text" name="dbUser" value="myuser"/></label><br />';
-	echo '<label>Database Pass: <input type="text" name="dbPass" value="mypassword"/></label><br />';
+	echo '<label>Database Pass: <input type="password" name="dbPass" value="mypassword"/></label><br />';
 	echo '<label>Database: <input type="text" name="dbName" value="filmlist"/></label><br />';
 	echo '<label>Database Host: <input type="text" name="name" value="localhost"/></label><br />';
 	echo '<label>Address: <input type="text" name="webAddress" value="http://filmlist.myserver.com"/></label><br />';
@@ -28,8 +28,7 @@ function execute() {
 	$connection = new mysqli(
 		$_POST['dbHost'],
 		$_POST['dbUser'],
-		$_POST['dbPass'],
-		$_POST['dbName']
+		$_POST['dbPass']
 	);
 
 	if ( mysqli_connect_errno() ) {
@@ -38,13 +37,14 @@ function execute() {
 	}
 
 	$settings = '<?php
+
 define( "DB_HOST", "' . $_POST['dbHost'] . '" );
 define( "DB_USER", "' . $_POST['dbUser'] . '" );
 define( "DB_PASS", "' . $_POST['dbPass'] . '" );
 define( "DB_NAME", "' . $_POST['dbName'] . '" );';
 
 	file_put_contents( 'settings.php', $settings );
-	
+
 	mysqli_query( $connection, "CREATE DATABASE IF NOT EXISTS " . $_POST['dbName'] );
 
 	mysqli_select_db( $connection, $_POST['dbName'] );
