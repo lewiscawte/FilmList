@@ -16,7 +16,7 @@ function form() {
 	echo '<label>Database User: <input type="text" name="dbUser" value="myuser"/></label><br />';
 	echo '<label>Database Pass: <input type="password" name="dbPass" value="mypassword"/></label><br />';
 	echo '<label>Database: <input type="text" name="dbName" value="filmlist"/></label><br />';
-	echo '<label>Address: <input type="text" name="webAddress" value="http://filmlist.myserver.com"/></label><br />';
+	echo '<label>Address: <input type="text" name="webAddress" value="http://' . $_SERVER['HTTP_HOST'] . '"/></label><br />';
 	echo '<label>Films per Page: <input type="number" name="filmsPage" value="25"/></label><br />';
 	echo '<input type="submit" />';
 	echo '</form>';
@@ -53,27 +53,16 @@ define( "DB_NAME", "' . $_POST['dbName'] . '" );';
 		die( 'Could not get schema!' );
 	}
 
-	$logSchema = mysqli_multi_query( $connection, $schema );
+	$schema .= "INSERT INTO config ( config_item, config_group, config_value )
+		VALUES ( 'BaseURL', '', '" . (string)$_POST['webAddress'] . "' );";
+	$schema .= "INSERT INTO config ( config_item, config_group, config_value )
+		VALUES ( 'ListLimit', '', '" . (string)$_POST['filmsPage'] . "' );";
 
-	$logBase = mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
-		VALUES ( 'BaseURL', '', '" . (string)$_POST['webAddress'] . "' )" );
-	$logLimit = mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
-		VALUES ( 'ListLimit', '', '" . (string)$_POST['filmsPage'] . "' )" );
+	$schema .= file_get_contents( 'maintenance/defaultData.sql' );
 
-	$defaultSettings = file_get_contents( 'maintenance/defaultData.sql' );
-	if ( !$defaultSettings ) {
-		die( 'Could not get default settings file!' );
-	}
+	mysqli_multi_query( $connection, $schema );
 
-	$logConfig = mysqli_multi_query( $connection, $defaultSettings );
-
-	file_put_contents( '1.log', $logBase );
-	file_put_contents( '2.log', $logConfig );
-	file_put_contents( '3.log', $logLimit );
-	file_put_contents( '4.log', $logSchema );
-	
 	mysqli_close( $connection );
 
-	print_r( var_export( $_POST ) );
-	//header( 'Location: index.php?page=index' );
+	header( 'Location: index.php?page=index' );
 }
