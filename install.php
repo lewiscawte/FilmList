@@ -37,6 +37,14 @@ function execute() {
 		die( 'Failed to connect to SQL server.php ');
 	}
 
+	$settings = '<?php
+define( "DB_HOST", "' . $_POST['dbHost'] . '" );
+define( "DB_USER", "' . $_POST['dbUser'] . '" );
+define( "DB_PASS", "' . $_POST['dbPass'] . '" );
+define( "DB_NAME", "' . $_POST['dbName'] . '" );';
+
+	file_put_contents( 'settings.php', $settings );
+	
 	mysqli_query( $connection, "CREATE DATABASE IF NOT EXISTS " . $_POST['dbName'] );
 
 	mysqli_select_db( $connection, $_POST['dbName'] );
