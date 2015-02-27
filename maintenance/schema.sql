@@ -93,6 +93,21 @@ CREATE TABLE IF NOT EXISTS `film_media` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating`
+--
+
+CREATE TABLE IF NOT EXISTS `rating` (
+  `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rating_film_id` int(11) NOT NULL,
+  `rating_user` varchar(50) NOT NULL,
+  `rating_score` float NOT NULL,
+  `rating_text` text,
+  PRIMARY KEY (`rating_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
