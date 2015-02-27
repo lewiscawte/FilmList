@@ -53,11 +53,11 @@ define( "DB_NAME", "' . $_POST['dbName'] . '" );';
 		die( 'Could not get schema!' );
 	}
 
-	mysqli_multi_query( $connection, $schema );
+	$logSchema = mysqli_multi_query( $connection, $schema );
 
-	mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
+	$logBase = mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
 		VALUES ( 'BaseURL', '', '" . (string)$_POST['webAddress'] . "' )" );
-	mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
+	$logLimit = mysqli_query( $connection, "INSERT INTO config ( config_item, config_group, config_value )
 		VALUES ( 'ListLimit', '', '" . (string)$_POST['filmsPage'] . "' )" );
 
 	$defaultSettings = file_get_contents( 'maintenance/defaultData.sql' );
@@ -65,8 +65,13 @@ define( "DB_NAME", "' . $_POST['dbName'] . '" );';
 		die( 'Could not get default settings file!' );
 	}
 
-	mysqli_multi_query( $connection, $defaultSettings );
+	$logConfig = mysqli_multi_query( $connection, $defaultSettings );
 
+	file_put_contents( '1.log', $logBase );
+	file_put_contents( '2.log', $logConfig );
+	file_put_contents( '3.log', $logLimit );
+	file_put_contents( '4.log', $logSchema );
+	
 	mysqli_close( $connection );
 
 	print_r( var_export( $_POST ) );
