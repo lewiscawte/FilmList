@@ -1,12 +1,17 @@
 <?php
 
+// POST should be empty if there are not inputs being posted.
 if( empty( $_POST ) ) {
+	// Assuming that the film hasn't been filled in yet, show
+	// the installer form.
 	form();
 } else {
+	// If there's been some data sent, actually set up FilmList.
 	execute();
 }
 
 function form() {
+	// Form HTML output (Context is not available and Twig is annoying)
 	echo '<html>';
 	echo '<head><title>Install Film List</title></head>';
 	echo '<body>';
@@ -35,6 +40,7 @@ function execute() {
 		die( 'Failed to connect to SQL server.php ');
 	}
 
+	// Construct the settings file.
 	$settings = '<?php
 
 define( "DB_HOST", "' . $_POST['dbHost'] . '" );
@@ -42,22 +48,30 @@ define( "DB_USER", "' . $_POST['dbUser'] . '" );
 define( "DB_PASS", "' . $_POST['dbPass'] . '" );
 define( "DB_NAME", "' . $_POST['dbName'] . '" );';
 
+	// Save the settings file to it's place.
 	file_put_contents( 'settings.php', $settings );
 
+	// Make sure the database exists
 	mysqli_query( $connection, "CREATE DATABASE IF NOT EXISTS " . $_POST['dbName'] );
 
+	// Start using our FilmList database.
 	mysqli_select_db( $connection, $_POST['dbName'] );
 
+	// Fetch the database schema.
 	$schema = file_get_contents( 'maintenance/schema.sql' );
 	if ( !$schema ) {
 		die( 'Could not get schema!' );
 	}
 
+	// Append the following because for some reason, it fails to execute
+	// the queries if you do them as separate queries (but runs the rest
+	// of the script.)
 	$schema .= "INSERT INTO config ( config_item, config_group, config_value )
 		VALUES ( 'BaseURL', '', '" . (string)$_POST['webAddress'] . "' );";
 	$schema .= "INSERT INTO config ( config_item, config_group, config_value )
 		VALUES ( 'ListLimit', '', '" . (string)$_POST['filmsPage'] . "' );";
 
+	// Some preset inserts for
 	$schema .= file_get_contents( 'maintenance/defaultData.sql' );
 
 	mysqli_multi_query( $connection, $schema );

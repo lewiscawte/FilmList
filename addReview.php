@@ -6,11 +6,14 @@
  * Time: 20:25
  */
 
+// We're not (able?) to use the main context here
+// so we have to load our own info for the database connections.
 require_once "settings.php";
 
 execute();
 
 function execute() {
+	// Create use a connection to the database.
 	$connection = new mysqli(
 		DB_HOST,
 		DB_USER,
@@ -21,8 +24,6 @@ function execute() {
 	if ( mysqli_connect_errno() ) {
 		file_put_contents( 'connection.log', "Failed to connect to MySQL: " . mysqli_connect_error() );
 	}
-
-	print_r( var_export( $_POST ) );
 
 	mysqli_select_db( $connection, DB_NAME );
 

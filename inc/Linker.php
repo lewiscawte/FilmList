@@ -14,6 +14,7 @@ class Linker extends Context {
 		$this->conf = $this->getConfig();
 	}
 
+
 	/**
 	 * @param $page
 	 * @param $ref
