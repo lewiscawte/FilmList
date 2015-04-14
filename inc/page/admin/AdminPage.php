@@ -17,12 +17,13 @@ class AdminPage extends Page {
 				$title = 'Add New Film';
 				break;
 			default:
+				// Just in case, we'll put the title as the sitename.
 				$title = $this->getConfig()->getSetting( 'Sitename' );
 				$title = $title['config_value'];
 				break;
 		}
 
-		// TODO: Review this code, intended structure is
+		// @TODO: Review this code, intended structure is
 		// 		something along the lines of "Add Film | SITENAME Admin Panel"
 		$titleSitename = $this->getConfig()->getSetting( 'TitleSitename' );
 

@@ -10,11 +10,13 @@ class AdminEditFilm extends AdminPage {
 	private $thisfilm = 0, $thispage = 'admin/editfilm';
 
 	public function __construct() {
+		// Placeholder
 	}
 
 	public function execute( $page ) {
 		// $this->doPageCheck();
 
+		// Load our template and pass the basic data to it.
 		$template = $this->getTwig()->loadTemplate( 'admin-index.twig' );
 		$template->display( array(
 			'baseurl' => $baseURL = $this->getConfig()->getSetting( 'BaseURL' )['config_value'],

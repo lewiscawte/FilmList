@@ -22,7 +22,7 @@ require_once "$IP/inc/Ratings.php";
 // Pages
 require_once "$IP/inc/page/Page.php";
 require_once "$IP/inc/page/IndexPage.php";
-require_once "$IP/inc/page/LoginPage.php";
+//require_once "$IP/inc/page/LoginPage.php";
 require_once "$IP/inc/page/FilmPage.php";
 require_once "$IP/inc/page/ListFilms.php";
 

@@ -10,6 +10,7 @@ class AdminAddFilm extends AdminPage {
 	private $thispage = 'admin/addfilm';
 
 	public function execute( $page ) {
+		// Load our template and pass the basics.
 		$template = $this->getTwig()->loadTemplate( 'admin-addfilm.twig' );
 		$template->display( array(
 			'baseurl' => $baseURL = $this->getConfig()->getSetting( 'BaseURL' )['config_value'],

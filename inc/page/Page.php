@@ -7,8 +7,15 @@
  */
 
 class Page extends Context {
-	// Put stuff here?
+	// Put stuff here? (global variables)
 
+	/**
+	 * Function to build a formatted string for the
+	 * HTML page title (<title>).
+	 *
+	 * @param $page - pagename
+	 * @return bool|mysqli_result|string
+	 */
 	public function getTitle( $page ) {
 		switch ( $page ) {
 			case 'listfilms':
@@ -23,13 +30,19 @@ class Page extends Context {
 				break;
 		}
 
+		// Do we put the Sitename in the title? Get the bool from the database
+		// to tell us.
 		$titleSitename = $this->getConfig()->getSetting( 'TitleSitename' );
 
+		// Now if we do...
 		if ( boolval( $titleSitename['config_value'] ) ) {
+			// Get the sitename.
 			$sitename = $this->getConfig()->getSetting( 'Sitename' );
+			// And append it to our title string.
 			$title .= " | " . $sitename['config_value'];
 		}
 
+		// Give it back, you thief!
 		return $title;
 	}
 } 

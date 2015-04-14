@@ -15,6 +15,7 @@ class AdminIndex extends AdminPage {
 	public function execute( $page ) {
 		// $this->doPageCheck();
 
+		// Load our template and pass it some basic data.
 		$template = $this->getTwig()->loadTemplate( 'admin-index.twig' );
 		$template->display( array(
 			'baseurl' => $baseURL = $this->getConfig()->getSetting( 'BaseURL' )['config_value'],
