@@ -169,6 +169,7 @@ class FilmPage extends Page {
 					break;
 			}
 
+			// Convert to lower case and wrap in parenthesis.
 			$adaptation[0] = "(" . strtolower( $adaptation[0] ) . ")";
 
 			// Ditch any other parts of this. Shouldn't be extra details in this field.

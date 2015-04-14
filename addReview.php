@@ -21,16 +21,22 @@ function execute() {
 		DB_NAME
 	);
 
+	// Log if connection couldn't be made.
 	if ( mysqli_connect_errno() ) {
+		// @TODO: Friendly message and/or die if a connection fails.
 		file_put_contents( 'connection.log', "Failed to connect to MySQL: " . mysqli_connect_error() );
 	}
 
+	// USE so we don't have prefix all our tables.
 	mysqli_select_db( $connection, DB_NAME );
 
+	// Insert details. ID is auto incremented.
 	mysqli_query( $connection, "INSERT INTO rating ( rating_film_id, rating_user, rating_score, rating_text )
 		VALUES ( '" . $_POST['filmID' ] . "', '" . htmlspecialchars( $_POST['name'] ) . "', '" . $_POST['score'] . "', '" . $_POST['text'] . "' )" );
 
+	// Clean up any loose connection.
 	mysqli_close( $connection );
 
+	// Lets go have a look at our rating in place.
 	header( 'Location: index.php?page=film&filmid=' . $_POST['filmID'] );
 }

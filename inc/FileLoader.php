@@ -5,6 +5,10 @@
  * Date: 19/11/14
  * Time: 14:04
  */
+/**
+ * Load lots of files, so we can call their
+ * classes.
+ */
 
 // "Core"
 require_once "$IP/inc/Context.php";
