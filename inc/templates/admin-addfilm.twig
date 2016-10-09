@@ -1,11 +1,14 @@
+{# Get the header, with HTML <head> etc. #}
 {% include 'header.twig' %}
 <div class="ui-header">Film List</div>
 <div class="ui-sidebar">
+    {# Get our sidebar #}
     {% include 'sidebar.twig' %}
 </div>
 <div class="ui-content">
 	<h2>Add Film</h2>
 
+    {# action is the post script. id is needed for both CSS and textarea boxes to work. #}
     <form action="addFilm.php" method="post" name="addFilm" id="addFilm">
 
         <label>Film Name: <input type="text" name="name" /></label><br />

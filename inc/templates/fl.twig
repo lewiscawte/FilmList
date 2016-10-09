@@ -19,9 +19,12 @@
             <th>Year</th>
             <th>Runtime</th>
         </tr>
+        {# films should be an array of arrays. Loop through each as f. #}
         {% for f in films %}
             <tr>
                 <td></td>
+                {# BaseURL is passed as {{ baseurl }}. #}
+                {# Access f array with fields. #}
                 <td><a href="{{ baseurl }}index.php?page=film&filmid={{ f['film_id'] }}">{{ f['film_name'] | escape }}</a></td>
                 <td>{{ f['film_year'] | escape }}</td>
                 <td>{{ f['film_runtime'] | escape }} minutes</td>
