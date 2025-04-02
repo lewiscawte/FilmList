@@ -1,0 +1,1 @@
+This project was my massively unfinished and poorly architected GCE Computing project aiming to produce a library management only system similar to Jellyfin/Emby/Plex. This project was thought up in ~2013 when most of these projects were still in their infancy or non-existent, and has been shelved in place of better and actively developed solutions.
